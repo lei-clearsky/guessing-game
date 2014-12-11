@@ -1,0 +1,192 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+body {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #363636;
+	background: #eee;
+	font-weight: 300;
+}
+
+a {
+	color: #09c;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	color: #00698c;
+	text-decoration: none;
+}
+
+/* Header Style */
+header {
+	margin: 70px auto;
+	max-width: 60%;
+	text-align: center;
+}
+
+header h1 {
+	font-size: 5.714em; 
+	color: #363636;
+	line-height: 1.3;
+	margin: 0;
+	font-weight: 300;
+}
+
+header h2 {
+	font-size: 2.571em; 
+	color: #363636;
+	line-height: 1.3;
+	margin: 0;
+	font-weight: 300;
+}
+
+
+hr.divider{
+	background: #363636;
+	border: 0;
+    height: 1px;
+    margin-top: 70px;
+	width:10%;
+}
+
+/* Thumbnail */
+.btn,
+.thumbnail .btn,
+.thumbnail .label{
+	border-radius:0;
+	margin: 0 10px;
+}
+
+.btn-info,
+.thumbnail .btn-info{
+	background: #09c;
+	border:0;
+	font-size: 24px;
+	font-weight: 300;
+}
+
+.btn-danger{
+	border:0;
+}
+
+.thumbnail .btn-info:hover,
+.thumbnail .btn-info:focus,
+.thumbnail .btn-info:active{
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+}
+
+.input-group-lg > .form-control{
+	font-size: 42px;
+	height: 80px;
+	margin: 30px 0;
+	padding: 0 20px;
+}
+footer{
+	margin: 50px 0;
+}
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+	header {
+		padding:0;
+		max-width: 90%;
+	}
+	header h1 {
+		font-size: 4em; 
+	}
+	header h2 {
+		font-size: 1.714em; 
+	}
+	hr.divider{
+		width:20%;
+	}
+	
+	.input-group-lg > .form-control{
+    	font-size: 24px;
+    	height: 80px;
+    	margin: 30px 0;
+    	padding: 0 20px;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	/* Header Style */
+	header {
+		max-width: 90%;
+	}
+
+	header h1 {
+		font-size: 5em; /* 70px/14px */
+	}
+
+	header h2 {
+		font-size: 2em; /* 28px/14px */
+	}
+	hr.divider{
+		width:15%;
+	}
+	.thumbnail > img{
+		opacity: 1;
+	}
+	.input-group-lg > .form-control{
+    	font-size: 24px;
+    	height: 80px;
+    	margin: 30px 0;
+    	padding: 0 20px;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	/* Header Style */
+	header {
+		max-width: 90%;
+	}
+
+	header h1 {
+		font-size: 5em; /* 70px/14px */
+	}
+
+	header h2 {
+		font-size: 2em; /* 28px/14px */
+	}
+	hr.divider{
+		width:15%;
+	}
+	.thumbnail > img{
+		opacity: 1;
+	}
+	.input-group-lg > .form-control{
+    	font-size: 24px;
+    	height: 80px;
+    	margin: 30px 0;
+    	padding: 0 20px;
+	}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+	header {
+		max-width: 90%;
+	}
+
+	header h1 {
+		font-size: 5.714em; 
+	}
+
+	header h2 {
+		font-size: 2.571em; 
+	}
+	.input-group-lg > .form-control{
+    	font-size: 24px;
+    	height: 80px;
+    	margin: 30px 0;
+    	padding: 0 20px;
+	}
+}
+
+
