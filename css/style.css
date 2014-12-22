@@ -85,6 +85,10 @@ hr.divider{
 	padding: 0 20px;
 }
 
+.info-box{
+	margin-bottom:30px;
+}
+
 .info-box h2{
 	margin-top:0;
 	font-weight: 300;
