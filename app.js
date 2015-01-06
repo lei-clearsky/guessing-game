@@ -7,14 +7,15 @@ var guessGame = (function ($){
 	// Begin module scope variables
 	var userInput,
 		previousInput,
-		userInputInt,
 		game,
+		stopGame,
 		initModule;
 
 	// Game class
 	var Game = function() {
 		this.guessLeft = 5;
 		this.previousInput = 0;
+		this.stopGame = false;
 		this.randomNum = Math.floor(Math.random() * 100 + 1);
 		$('#remainGuesses').html(this.guessLeft);
 		console.log(this.randomNum);
@@ -24,14 +25,22 @@ var guessGame = (function ($){
 	// user submit guess, verify user input
 	Game.prototype.submitGuess = function () {
 		userInput = $('#userGuess').val();
-		if (this.evaluateInput(userInput))
+		
+		if (!this.stopGame && this.evaluateInput(userInput)){
 			console.log(userInput);
 			this.checkAnswer(userInput);
+		}
+			
+	}
+
+	// check if user's input string is blank or contains only white-space
+	Game.prototype.isEmpty = function ( input ) {
+		return (input.length === 0 || !input.trim());
 	}
 
 	// verify if user's input is valid
 	Game.prototype.evaluateInput = function (input) {
-		if (isNaN(input) || input > 100 || input < 0) {
+		if (isNaN(input) || input > 100 || input < 0 || this.isEmpty(input)) {
 			$('#hint-info').html("Please enter a valid number and hit submit.");
 			return false;
 		} 
@@ -45,17 +54,18 @@ var guessGame = (function ($){
 		console.log('Input: ' + input);
 		console.log('this.previousInput: ' + this.previousInput);
 		var diff = Math.abs(input - this.previousInput);
+		var $tempInfo = $('#temp-info');
 
 		if (diff <= 5)
-			$('#temp-info').html("Super Hot!");
+			$tempInfo.html("Super Hot!");
 		else if (diff <= 10)
-			$('#temp-info').html("Hot!");
+			$tempInfo.html("Hot!");
 		else if (diff <= 15)
-			$('#temp-info').html("Warm!");
+			$tempInfo.html("Warm!");
 		else if (diff <= 25)
-			$('#temp-info').html("Cold!");
+			$tempInfo.html("Cold!");
 		else 
-			$('#temp-info').html("Ice Cold!");
+			$tempInfo.html("Ice Cold!");
 
 	}
 
@@ -67,28 +77,32 @@ var guessGame = (function ($){
 		this.previousInput = input;
 
 		if (this.guessLeft === 0){
+
 			$('#hint-info').html("You've used all your guesses!");
-		}
 
-		if(userInputInt === this.randomNum){
+			this.stopGame = true;
 
-			$('#hint-info').html("Congratulations! You guess is correct!");
+		} else if (input === this.randomNum) {
 
-		}else{
+				$('#hint-info').html("Congratulations! You guess is correct!");
+
+		} else {
 
 			this.guessLeft --;
+
 			$('#remainGuesses').html(this.guessLeft);
-			
-			if (userInputInt < this.randomNum){		
+		
+			if (input < this.randomNum){		
 				$('#hint-info').html("Guess higher!");
 			}else {
 				$('#hint-info').html("Guess lower!");
 			}
 
 		} 
+		 
 	} 
 
-	// hint
+	// get correct answer
 	Game.prototype.getAnswer = function () {
 
 		$('#hint-info').html("The answer is: " + this.randomNum);
@@ -111,7 +125,14 @@ var guessGame = (function ($){
 	var newGameClick = function(){
 		$('#newGame').click(function(event){
 			event.preventDefault();
-			initModule();
+			game = new Game();
+		});
+	}
+
+	var getHintClick = function(){
+		$('#getHint').click(function(event){
+			event.preventDefault();
+			game.getAnswer();
 		});
 	}
 
@@ -120,6 +141,7 @@ var guessGame = (function ($){
 		newGame();
 		submitGuessClick();
 		newGameClick();
+		getHintClick();
 	};
 
 	return { initModule: initModule };
