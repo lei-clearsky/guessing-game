@@ -82,7 +82,7 @@ var guessGame = (function ($){
 
 			this.stopGame = true;
 
-		} else if (input === this.randomNum) {
+		} else if (input == this.randomNum) {
 
 				$('#hint-info').html("Congratulations! You guess is correct!");
 
